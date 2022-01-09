@@ -9,44 +9,53 @@ function App() {
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
   console.log('data:', data);
+  console.log('startDate', startDate);
+  console.log('endDate', endDate);
 
-  if(startDate !== '') {
-    url += baseURL + '&start_date=' + startDate;
-  }
-  if(endDate !== '') {
-    url += baseURL + '&end_date=' + endDate;
+  if(startDate !== '' && endDate !== '') {
+    url += baseURL + '&start_date=' + startDate + '&end_date=' + endDate;
   }
   else {
-    url += baseURL + '&count=10';
+    url = baseURL + '&count=10';
   }
 
   useEffect(() => {
     fetch(url)
-      .then(function(response) {
-        if(!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+      .then(response => response.json()) 
+      .then(
+        (json) => {
+          setIsLoaded(true);
+          setData(json);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
         }
-        return response.json();
-      })
-      .then(json => {console.log('Success:', setData(json))})
-      .catch(err => console.log('Fetch problem:', err.message));
-  }, []);
+      )
+  }, [startDate, endDate]);
  
+  function setDate(start, end) {
+    setStartDate(start);
+    setEndDate(end);
+  }
   
-  
-  return (
-    <div className="App">
-      <h1>Some Awesome pictures from above us!!!</h1>
-      <Date />
-      <ul>
-        <hr />
+  if (error) {
+    return <div>Error: {error.message}</div>
+  } else if (!isLoaded) {
+    return <div>Getting data from NASA...</div>
+  } else {
+    return (
+      <div className="App">
+        <h1>Some Awesome pictures from above us!!!</h1>
+        <Date  setDate={setDate} setEndDate={setDate}/>
         {data.map((item,idx) => <Image key={idx} {...item} />)}
-      </ul>
-     
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
