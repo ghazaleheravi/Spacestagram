@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Date from './components/Date';
+import DatePicker from './components/DatePicker';
 import Image from './components/Image';
 
 function App() {
@@ -12,9 +12,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-  console.log('data:', data);
-  console.log('startDate', startDate);
-  console.log('endDate', endDate);
 
   if(startDate !== '' && endDate !== '') {
     url += baseURL + '&start_date=' + startDate + '&end_date=' + endDate;
@@ -28,16 +25,16 @@ function App() {
       .then(response => response.json()) 
       .then(
         (json) => {
-          setIsLoaded(true);
           setData(json);
-        },
-        (error) => {
           setIsLoaded(true);
-          setError(error);
-        }
+        },
       )
+      .catch(error => {
+        setError(error);
+      }) 
   }, [startDate, endDate]);
  
+  
   function setDate(start, end) {
     setStartDate(start);
     setEndDate(end);
@@ -51,7 +48,7 @@ function App() {
     return (
       <div className="App">
         <h1>Some Awesome pictures from above us!!!</h1>
-        <Date  setDate={setDate} setEndDate={setDate}/>
+        <DatePicker  setDate={setDate} setEndDate={setDate} />
         {data.map((item,idx) => <Image key={idx} {...item} />)}
       </div>
     );

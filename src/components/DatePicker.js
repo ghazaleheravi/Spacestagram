@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 
 function Date(props) {
-
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
     props.setDate(startDate, endDate);
-    setStartDate('');
-    setEndDate('');
   }
 
   function handleSubmitedStartDate(e) {
@@ -39,8 +37,9 @@ function Date(props) {
         required={true}
         value={endDate}
         onChange={handleSubmitedEndDate}
+        max={moment().format('YYYY-MM-DD')}
       />
-      <button type="submit" className="btn">date-picker</button>
+      <button type="submit" className="btn">DATE-PICKER</button>
     </form>
   );
 }
