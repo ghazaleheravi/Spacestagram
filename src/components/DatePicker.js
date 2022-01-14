@@ -8,6 +8,7 @@ function Date(props) {
   function handleSubmit(e) {
     e.preventDefault();
     props.setDate(startDate, endDate);
+    props.load(false);
   }
 
   function handleSubmitedStartDate(e) {
@@ -19,8 +20,8 @@ function Date(props) {
   }
 
   return(
-    <form onSubmit={handleSubmit}>
-      <label className="start_date" htmlFor="start_date">Pick A StartDate:</label>
+    <form className="form" onSubmit={handleSubmit}>
+      <label className="label_start_date" htmlFor="start_date">See NASA pictures From: </label>
       <input 
         type="date"
         id="start_date"
@@ -29,7 +30,7 @@ function Date(props) {
         value={startDate}
         onChange={handleSubmitedStartDate}
       />
-      <label className="end_date" htmlFor="end_date">Pick A EndDate</label>
+      <label className="label_end_date" htmlFor="end_date">To: </label>
       <input
         type="date"
         id="end_date"
@@ -37,9 +38,10 @@ function Date(props) {
         required={true}
         value={endDate}
         onChange={handleSubmitedEndDate}
+        min={startDate}
         max={moment().format('YYYY-MM-DD')}
       />
-      <button type="submit" className="btn">DATE-PICKER</button>
+      <button type="submit" className="search-btn">Search</button>
     </form>
   );
 }

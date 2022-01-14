@@ -12,6 +12,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+  console.log('data: ', data);
 
   if(startDate !== '' && endDate !== '') {
     url += baseURL + '&start_date=' + startDate + '&end_date=' + endDate;
@@ -23,32 +24,44 @@ function App() {
   useEffect(() => {
     fetch(url)
       .then(response => response.json()) 
-      .then(
-        (json) => {
-          setData(json);
+      .then(result => {
+          setData(result);
           setIsLoaded(true);
         },
       )
       .catch(error => {
         setError(error);
       }) 
-  }, [startDate, endDate]);
+  }, [startDate, endDate, isLoaded]);
  
-  
   function setDate(start, end) {
     setStartDate(start);
     setEndDate(end);
   }
+
+  function loadingHandler(loadStat) {
+    setIsLoaded(loadStat);
+  }
   
   if (error) {
     return <div>Error: {error.message}</div>
-  } else if (!isLoaded) {
-    return <div>Getting data from NASA...</div>
-  } else {
+  } 
+  else if (!isLoaded) {
+    return (
+      <div className="loading">
+        <img className="loading_image" 
+          src={process.env.PUBLIC_URL + '/loading-image.gif'}
+          alt="Getting Data from NASA..."
+        />
+        <p>Getting Data From NASA...</p>
+      </div>
+    );
+  } 
+  else {
     return (
       <div className="App">
-        <h1>Some Awesome pictures from above us!!!</h1>
-        <DatePicker  setDate={setDate} setEndDate={setDate} />
+        <h1 className="header">Awesome Pictures From Above Us!!!</h1>
+        <DatePicker setDate={setDate} setEndDate={setDate} load={loadingHandler} />
         {data.map((item,idx) => <Image key={idx} {...item} />)}
       </div>
     );

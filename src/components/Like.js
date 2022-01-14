@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-
 function Like(props) {
   const [isLiked, setIsLiked] = useState(false);
   const [disLike, setDisLike] = useState(false);
   
   function handleLikeClick() {
-    if(isLiked === false ) {
+    if(isLiked === false) {
       setIsLiked(true);
       localStorage.setItem(props.data.title, 'Liked');
     } else {
@@ -26,14 +25,21 @@ function Like(props) {
 
   if (disLike === false && localStorage.getItem(props.data.title)) {
     return ( 
-      <button type="button" onClick={handleDisLikeClick}>
-        {disLike === true ? 'Like' : 'Liked'}
+      <button className="like-btn" type="button" onClick={handleDisLikeClick}>
+        {disLike === true 
+          ? <img src={process.env.PUBLIC_URL+'/unlike.png'}/> 
+          : <img src={process.env.PUBLIC_URL+'/like.png'}/>
+        }
       </button>
     )
-  } else {
+  } 
+  else {
     return (
-      <button type="button" onClick={handleLikeClick}>
-        {isLiked === false ? 'Like' : 'Liked'}
+      <button className="like-btn" type="button" onClick={handleLikeClick}>
+        {isLiked === false 
+          ? <img src={process.env.PUBLIC_URL+'/unlike.png'}/> 
+          : <img src={process.env.PUBLIC_URL+'/like.png'}/>
+        }
       </button>
     )
   }
