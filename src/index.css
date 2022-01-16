@@ -57,7 +57,7 @@ code {
   border-radius: 5px;
 }
 
-.image-wrapper {
+.container {
   max-width: 600px;
   margin: 0 auto;
   border-radius: 10px;
@@ -68,22 +68,28 @@ code {
 
 .logo {
   margin-bottom: -15px;
+  display: relative;
 }
 
 #image-header {
   display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 35px;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  display: absolute;
+}
+
+#image-title {
   position: relative;
-  font-size: 20px;
+  display: inline-block;
+  margin-bottom: 3px;
 }
 
 .image-date{
-  margin-top: 5px;
-  margin-bottom: 20px;
-  font-size: 14px;
+  display: block;
+  margin-top: 0px;
   color:gray;
   position: absolute;
+  min-width:100px;
 }
   
 .image {
@@ -100,5 +106,9 @@ code {
   background-color: whitesmoke;
 }
   
- 
+.footer {
+  color: gray;
+  font-size: 14px;
+  text-align: center;
+} 
 

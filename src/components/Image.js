@@ -5,14 +5,14 @@ function Image(props) {
   
   return (
     <div>
-      <div className="image-wrapper">
-  
+      <div className="container">
+        <div className="image-header">
           <img src={process.env.PUBLIC_URL + '/nasaLogo2.png'} className="logo"/>
-          
-            <div id="image-header">{props.title}<p className="image-date">{props.date}</p></div>
-            
-          
-       
+          <div id="image-header">
+            <h3 id="image-title">{props.title}</h3>
+            <p className="image-date">{props.date}</p>
+          </div>
+        </div>
         <img className="image" src={props.url} alt="Not Avalaibe!" loading="lazy" width="480" height="360"
           srcSet=
             {`${props.url} 480w,

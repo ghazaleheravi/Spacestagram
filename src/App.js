@@ -63,6 +63,7 @@ function App() {
         <h1 className="header">Awesome Pictures From Above Us!!!</h1>
         <DatePicker setDate={setDate} setEndDate={setDate} load={loadingHandler} />
         {data.map((item,idx) => <Image key={idx} {...item} />)}
+        <footer className="footer">Project for Shopify Internship 2022 by Ghazaleh H.</footer>
       </div>
     );
   }
