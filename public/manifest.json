@@ -1,21 +1,26 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "spacestagram",
+  "name": "spacestagram",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "loading-image.gif",
+      "sizes": "64x64",
+      "type": "image/gif"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "like.png",
+      "sizes": "32x31",
+      "type": "image/png"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "nasaLogo2.png",
+      "sizes": "55x46",
+      "type": "image/png"
+    },
+    {
+      "src": "unlike.png",
+      "sizes": "32x31",
+      "type": "image/png"
     }
   ],
   "start_url": ".",

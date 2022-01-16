@@ -44,7 +44,7 @@ function App() {
   }
   
   if (error) {
-    return <div>Error: {error.message}</div>
+    return <div>Something went wrong. Error: {error.message}</div>
   } 
   else if (!isLoaded) {
     return (
