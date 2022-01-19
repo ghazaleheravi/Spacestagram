@@ -4,7 +4,7 @@ import UnlikeImage from '../svgComponents/UnlikeImage';
 
 function Like(props) {
   const [isLiked, setIsLiked] = useState(false);
-  const [disLike, setDisLike] = useState(false);
+  const [unLiked, setUnLiked] = useState(false);
   
   function handleLikeClick() {
     if(!isLiked) {
@@ -17,15 +17,15 @@ function Like(props) {
   }
 
   function handleDisLikeClick() {
-    if(disLike) {
-      setDisLike(false);
+    if(unLiked) {
+      setUnLiked(false);
     } else {
-      setDisLike(true);
+      setUnLiked(true);
       localStorage.removeItem(props.data.title);
     }
   }
 
-  if (disLike === false && localStorage.getItem(props.data.title)) {
+  if (unLiked === false && localStorage.getItem(props.data.title)) {
     return ( 
       <button 
         className="like-btn" 
@@ -34,7 +34,7 @@ function Like(props) {
         name="favorite"
         aria-hidden="true"
       >
-        {disLike === true ? <UnlikeImage /> : <LikeImage />}
+        {unLiked === true ? <UnlikeImage /> : <LikeImage />}
       </button>
     )
   } 
