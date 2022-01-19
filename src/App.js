@@ -5,7 +5,7 @@ import Header from './svgComponents/Header';
 
 
 function App() {
-  const key = process.env.REACT_APP_API_KEY;
+  const key = 'T3rb301Uv0xEVOjZ9V41b1SgkbKzyuAyJ8nE7nNn';
   const baseURL = 'https://api.nasa.gov/planetary/apod?api_key=' + key;
   let url = '';
 
